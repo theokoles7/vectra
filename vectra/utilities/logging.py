@@ -1,4 +1,4 @@
-"""# vectras.utilities.logging
+"""# vectra.utilities.logging
 
 Package logging utility.
 """
@@ -15,7 +15,7 @@ from sys                import stdout
 
 
 # Declare base logger.
-LOGGER: Logger = getLogger(name = "vectras")
+LOGGER: Logger = getLogger(name = "vectra")
 
 
 def configure_logger(
@@ -46,7 +46,7 @@ def configure_logger(
     
     # Define file handler.
     file_handler:   RotatingFileHandler =   RotatingFileHandler(
-                                                filename =      f"{logging_path}/vectras.log",
+                                                filename =      f"{logging_path}/vectra.log",
                                                 maxBytes =      1048576,
                                                 backupCount =   10
                                             )
