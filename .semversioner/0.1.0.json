@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "description": "Integrate regression tests",
+      "type": "minor"
+    }
+  ],
+  "created_at": "2026-05-09T19:37:46+00:00",
+  "version": "0.1.0"
+}
