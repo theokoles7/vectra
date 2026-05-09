@@ -61,7 +61,7 @@ readme =            { file = ["README.md"], content-type = "text/markdown" }
 package =           "vectra"
 package_dir =       "."
 filename =          "CHANGELOG.md"
-directory =         "changelog.d"
+directory =         ".changelog"
 title_format =      "## {version} ({project_date})"
 issue_format =      "[#{issue}](https://github.com/theokoles7/vectra/issues/{issue})"
 
