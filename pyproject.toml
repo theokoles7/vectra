@@ -1,0 +1,91 @@
+[build-system]
+requires =          ["setuptools>=61.0"]
+build-backend =     "setuptools.build_meta"
+
+# PROJECT ==========================================================================================
+
+[project]
+name =              "vectra"
+version =           "0.0.0"
+dynamic =           ["readme"]
+description =       "Experiments in algorithmic trading via machine learning solutions."
+authors =           [
+                        { name = "Gabriel C. Trahan",   email = "gabrieltrahan777@hotmail.com" },
+                    ]
+license =           { text = "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007" }
+requires-python =   ">=3.10"
+
+dependencies =      [
+                        
+                    ]
+
+classifiers =       [
+                        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+                        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+                        "Intended Audience :: Developers",
+                        "Operating System :: OS Independent",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                    ]
+
+[project.optional-dependencies]
+dev =               [
+                        "pytest",
+                        "towncrier",
+                    ]
+
+[project.scripts]
+vectra =            "vectra.__main__:vectra_entry_point"
+
+[project.urls]
+Homepage =          "https://github.com/theokoles7/vectra"
+
+# SETUP TOOLS ======================================================================================
+
+[tool.setuptools]
+license-files =     ["LICENSE"]
+
+[tool.setuptools.packages.find]
+where =             ["."]
+include =           ["vectra*"]
+
+[tool.setuptools.dynamic]
+readme =            { file = ["README.md"], content-type = "text/markdown" }
+
+# TOWNCRIER ========================================================================================
+
+[tool.towncrier]
+package =           "vectra"
+package_dir =       "."
+filename =          "CHANGELOG.md"
+directory =         "changelog.d"
+title_format =      "## {version} ({project_date})"
+issue_format =      "[#{issue}](https://github.com/theokoles7/vectra/issues/{issue})"
+
+[[tool.towncrier.type]]
+directory =         "feature"
+name =              "Features"
+showcontent =       true
+
+[[tool.towncrier.type]]
+directory =         "bugfix"
+name =              "Bug Fixes"
+showcontent =       true
+
+[[tool.towncrier.type]]
+directory =         "doc"
+name =              "Documentation"
+showcontent =       true
+
+[[tool.towncrier.type]]
+directory =         "removal"
+name =              "Removals"
+showcontent =       true
+
+[[tool.towncrier.type]]
+directory =         "misc"
+name =              "Miscellaneous"
+showcontent =       false
