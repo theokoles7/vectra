@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "description": "Use semversioner for version tracking",
+      "type": "patch"
+    }
+  ],
+  "created_at": "2026-05-09T15:39:15+00:00",
+  "version": "0.0.1"
+}
