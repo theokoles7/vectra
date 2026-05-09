@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "pyproject.toml"   # Triggers when version is bumped
+      - ".semversioner/next-release/*.json"
 
 jobs:
   release:
@@ -22,22 +22,29 @@ jobs:
           python-version: "3.13"
 
       - name: Install dependencies
-        run: pip install towncrier
+        run: pip install semversioner
+
+      - name: Release
+        run: semversioner release
+
+      - name: Generate changelog
+        run: semversioner changelog > CHANGELOG.md
 
       - name: Read version
         id: version
         run: |
-          VERSION=$(python -c "import tomllib; d = tomllib.load(open('pyproject.toml','rb')); print(d['project']['version'])")
+          VERSION=$(semversioner current-version)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Build changelog
-        run: towncrier build --yes --version ${{ steps.version.outputs.version }}
+      - name: Update pyproject.toml version
+        run: |
+          sed -i "s/^version = .*/version = \"${{ steps.version.outputs.version }}\"/" pyproject.toml
 
       - name: Commit & tag
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md .changelog/
+          git add CHANGELOG.md .semversioner/ pyproject.toml
           git commit -m "Release v${{ steps.version.outputs.version }}"
           git tag "v${{ steps.version.outputs.version }}"
           git push --follow-tags
@@ -45,6 +52,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name:   "v${{ steps.version.outputs.version }}"
-          name:       "v${{ steps.version.outputs.version }}"
-          body_path:  CHANGELOG.md
+          tag_name: "v${{ steps.version.outputs.version }}"
+          name:     "v${{ steps.version.outputs.version }}"
+          body_path: CHANGELOG.md
