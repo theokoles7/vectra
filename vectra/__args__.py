@@ -5,10 +5,8 @@ Arguments definitions & parsing for Vectra application.
 
 __all__ = ["parse_vectra_arguments"]
 
-from argparse               import _ArgumentGroup, ArgumentParser, Namespace, _SubParsersAction
-from typing                 import Optional, Sequence
-
-from vectra.registration    import COMMAND_REGISTRY
+from argparse   import _ArgumentGroup, ArgumentParser, Namespace, _SubParsersAction
+from typing     import Optional, Sequence
 
 def parse_vectra_arguments(
     args:       Optional[Sequence[str]] =   None,
@@ -71,6 +69,7 @@ def parse_vectra_arguments(
     )
 
     # ==============================================================================================
+    from vectra.registration    import COMMAND_REGISTRY
 
     # Register commands.
     COMMAND_REGISTRY.register_configurations(subparser = subparser)
