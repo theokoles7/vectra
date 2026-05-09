@@ -1,17 +1,13 @@
-# IDE's
-.vscode
-.idea
+# Workspace files
+.idea/
+.vscode/
 
-# BUILD FILES
-build
+# Build files
 *.egg-info
 __pycache__
 
-# Logs
-logs
+# Log files
+logs/
 
-# Output
-output
-
-# SCRATCH FILES
-*scratch*
+# Cache files
+.cache/
