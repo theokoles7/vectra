@@ -11,3 +11,6 @@ logs/
 
 # Cache files
 .cache/
+
+# Configuration files
+config.yaml
