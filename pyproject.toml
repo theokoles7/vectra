@@ -17,6 +17,7 @@ requires-python =   ">=3.10"
 
 dependencies =      [
                         "pandas",
+                        "webull-openapi-python-sdk",
                         "yfinance",
                     ]
 
