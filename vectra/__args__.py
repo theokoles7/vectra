@@ -33,7 +33,8 @@ def parse_vectra_arguments(
                                         title =         "vectra-command",
                                         dest =          "vectra_command",
                                         help =          """Vectra command being executed.""",
-                                        description =   """Vectra command being executed."""
+                                        description =   """Vectra command being executed.""",
+                                        required =      True
                                     )
     
     # LOGGING ======================================================================================
