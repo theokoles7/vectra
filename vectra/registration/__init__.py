@@ -10,6 +10,7 @@ __all__ =   [
 
                 # Decorators
                 "register_command",
+                "register_service",
             ]
 
 from vectra.registration.decorators import *
