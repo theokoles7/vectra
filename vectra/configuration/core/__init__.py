@@ -5,7 +5,7 @@ Core configuration components.
 
 __all__ =   [
                 # Protocol
-                "Config"
+                "Config",
 
                 # Exceptions
                 "ConfigurationError",
