@@ -8,14 +8,17 @@ __all__ = ["Registry"]
 from abc                                    import ABC, abstractmethod
 from argparse                               import _SubParsersAction
 from logging                                import Logger
-from typing                                 import Any, Dict, List
+from typing                                 import Any, Dict, Generic, List, TypeVar
 
 from vectra.registration.core.entry         import Entry
 from vectra.registration.core.exceptions    import DuplicateEntryError, EntryNotFoundError, \
                                                    EntryPointNotConfiguredError
 from vectra.utilities                       import get_logger
 
-class Registry(ABC):
+# Declare generic Entry type.
+EntryT = TypeVar(name = "EntryT", bound = Entry)
+
+class Registry(ABC, Generic[EntryT]):
     """# Abstract Registry System"""
 
     def __init__(self,
@@ -31,13 +34,13 @@ class Registry(ABC):
 
         # Define properties.
         self._id_:          str =               id
-        self._entries_:     Dict[str, Entry] =  {}
+        self._entries_:     Dict[str, EntryT] = {}
         self._loaded_:      bool =              False
 
     # PROPERTIES ===================================================================================
 
     @property
-    def entries(self) -> Dict[str, Entry]:
+    def entries(self) -> Dict[str, EntryT]:
         """# Registered Entries"""
         return self._entries_.copy()
     
@@ -83,7 +86,7 @@ class Registry(ABC):
 
     def get_entry(self,
         entry_id:   str
-    ) -> Entry:
+    ) -> EntryT:
         """# Query for Registered Entry.
 
         ## Args:
@@ -189,7 +192,7 @@ class Registry(ABC):
     # HELPERS ======================================================================================
 
     @abstractmethod
-    def _create_entry_(self, **kwargs) -> Entry:
+    def _create_entry_(self, **kwargs) -> EntryT:
         """# Create Registration Entry.
 
         Factory method to create the appropriate entry type for this registry.
@@ -277,7 +280,7 @@ class Registry(ABC):
     
     def __getitem__(self,
         entry_id:   str
-    ) -> Entry:
+    ) -> EntryT:
         """# Query for Registered Entry
 
         ## Args:
