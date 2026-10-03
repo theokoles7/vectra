@@ -182,5 +182,5 @@ class TestCreateSubparser():
         with raises(SubParserNotConfiguredError):
             
             # Force an error to raise.
-            config._create_subparser_(parser = config.parser),  \
+            assert config._create_subparser_(parser = config.parser),  \
             "Sub-parser cannot be created when it is not defined"
