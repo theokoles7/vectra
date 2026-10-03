@@ -34,16 +34,23 @@ class Config(ABC):
         self._parser_help_:     str =               parser_help
         self._subparser_title_: Optional[str] =     subparser_title
         self._subparser_help_:  Optional[str] =     subparser_help
-        
-        # Define arguments.
-        self._define_arguments_(parser = self.parser)
 
     # PROPERTIES ===================================================================================
 
     @cached_property
     def parser(self) -> ArgumentParser:
         """# Configuration Argument Parser"""
-        return  ArgumentParser(prog = self.parser_id, description = self.parser_help)
+        # Initialize parser.
+        parser: ArgumentParser =    ArgumentParser(
+                                        prog =          self.parser_id,
+                                        description =   self.parser_help
+                                    )
+
+        # Define arguments.
+        self._define_arguments_(parser = parser)
+
+        # Expose parser.
+        return parser
     
     @property
     def parser_help(self) -> str:
