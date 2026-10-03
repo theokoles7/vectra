@@ -1,6 +1,6 @@
 """# vectra.registration.conftest
 
-Registry fixtures shares across registration tests.
+Registry fixtures shared across registration tests.
 """
 
 from pytest             import fixture

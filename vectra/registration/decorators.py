@@ -1,4 +1,4 @@
-"""# vectra.registratin.decorators
+"""# vectra.registration.decorators
 
 Function annotation decorators for registration of components.
 """

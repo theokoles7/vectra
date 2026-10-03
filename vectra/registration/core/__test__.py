@@ -489,4 +489,4 @@ class TestRegistryRegisterConfigurations():
         parent:     ArgumentParser =    ArgumentParser(prog = "parent")
         subparsers                =     parent.add_subparsers(dest = "command")
         with raises(ParserNotConfiguredError):
-            registry.register_configurations(subparser = subparsers)
+            assert registry.register_configurations(subparser = subparsers)

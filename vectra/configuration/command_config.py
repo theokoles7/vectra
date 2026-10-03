@@ -1,4 +1,4 @@
-"""# vectra.configuration.command.config
+"""# vectra.configuration.command_config
 
 Command configuration and argument handling protocol.
 """
@@ -18,7 +18,7 @@ class CommandConfig(Config):
         subparser_title:    Optional[str] = None,
         subparser_help:     Optional[str] = None
     ):
-        """# Instantiate Command Configration & Argument Handler.
+        """# Instantiate Command Configuration & Argument Handler.
 
         ## Args:
             * name              (str):          Command identifier.

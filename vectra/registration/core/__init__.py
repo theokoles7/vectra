@@ -1,4 +1,4 @@
-"""# vectra.registratin.core
+"""# vectra.registration.core
 
 Core registration components.
 """

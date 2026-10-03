@@ -16,7 +16,7 @@ class TestConfigurationError():
     """# Verify Generic Configuration Error Functionality."""
 
     def test_is_exception(self) -> None:
-        """# Assert that Configuration Erro is an Exception."""
+        """# Assert that Configuration Error is an Exception."""
         assert  issubclass(ConfigurationError, Exception),   \
                 "ConfigurationError should be type Exception"
 

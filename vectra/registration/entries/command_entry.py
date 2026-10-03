@@ -11,7 +11,7 @@ from vectra.configuration       import CommandConfig
 from vectra.registration.core   import Entry
 
 class CommandEntry(Entry):
-    """# COmmand Registration Entry"""
+    """# Command Registration Entry"""
 
     def __init__(self,
         id:             str,

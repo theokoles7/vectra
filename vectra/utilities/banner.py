@@ -1,4 +1,4 @@
-"""# vectra.banner
+"""# vectra.utilities.banner
 
 Versioning banner.
 """

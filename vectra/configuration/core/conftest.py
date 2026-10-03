@@ -22,5 +22,5 @@ def config_with_args() -> ConcreteConfig:
 
 @fixture
 def config_with_subparser() -> ConcreteConfigWithSubparser:
-    """# COncreteConfig That Creates a Sub-Parser"""
+    """# ConcreteConfig That Creates a Sub-Parser"""
     return ConcreteConfigWithSubparser()

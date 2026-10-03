@@ -1,6 +1,6 @@
 """# vectra.commands.version.main
 
-Main process etry point for `vectra version` command.
+Main process entry point for `vectra version` command.
 """
 
 __all__ = ["version_entry_point"]

@@ -19,14 +19,14 @@ class Entry(ABC):
         id:             str,
         config:         Optional[Type[Config]] =    None,
         entry_point:    Optional[Callable] =        None,
-        tags:           List[str] =                 None
+        tags:           Optional[List[str]] =       None
     ):
         """# Instantiate Registration Entry.
 
         ## Args:
             * id            (str):                  Entry identifier (seminal entity).
             * config        (Type[Config] | None):  Configuration & argument handler class.
-            * entry_poijt   (Callable | None):      Main process entry point.
+            * entry_point   (Callable | None):      Main process entry point.
             * tags          (List[str]):            Taxonomical key words.
         """
         # Initialize logger.
@@ -92,7 +92,7 @@ class Entry(ABC):
                                                 configuration will be registered.
 
         ## Raises:
-            * ParserNotCOnfiguredError: If entry was not registered with a configuration & argument 
+            * ParserNotConfiguredError: If entry was not registered with a configuration & argument 
                                         handler.
         """
         # If entry was not registered with a configuration, report error.

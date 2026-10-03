@@ -1,6 +1,6 @@
 """# vectra.configuration.core.exceptions
 
-Configuration & arguemnt handling exceptions/errors.
+Configuration & argument handling exceptions/errors.
 """
 
 __all__ =   [

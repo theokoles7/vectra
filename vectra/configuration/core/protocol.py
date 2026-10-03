@@ -90,7 +90,7 @@ class Config(ABC):
             * namespace (Namespace | None):     Previously parsed arguments name space.
 
         ## Returns:
-            * Namespace:    Name spaec of arguments/values that were known by the parser.
+            * Namespace:    Namespace of arguments/values that were known by the parser.
             * List[str]:    Sequence of leftover argument strings that were not recognized by the 
                             parser.
         """

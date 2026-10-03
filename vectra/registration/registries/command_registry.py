@@ -5,7 +5,7 @@ Command registry system.
 
 __all__ = ["CommandRegistry"]
 
-from typing                         import Dict, override
+from typing                         import override
 
 from vectra.registration.core       import Registry
 from vectra.registration.entries    import CommandEntry
@@ -14,7 +14,7 @@ class CommandRegistry(Registry[CommandEntry]):
     """# Command Registration System"""
 
     def __init__(self):
-        """# Instantiate Comand Registration System."""
+        """# Instantiate Command Registration System."""
         super(CommandRegistry, self).__init__(id = "commands")
     
     # HELPERS ======================================================================================
