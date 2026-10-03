@@ -147,7 +147,7 @@ class TestConfigArgumentParsing():
     def test_defined_argument_default(self, config_with_args: ConcreteConfig) -> None:
         """# Assert that Argument Defaults are Utilized."""
         # Parse arguments.
-        ns, _ = config_with_args.parse_arguments(["--foo", "bar"])
+        ns, _ = config_with_args.parse_arguments([])
 
         # Assert that argument & value are parsed.
         assert ns.foo == "bar", "Argument default value not honored"
