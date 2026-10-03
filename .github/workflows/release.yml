@@ -6,8 +6,16 @@ on:
     paths:
       - ".semversioner/next-release/*.json"
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+
   release:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,6 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -24,23 +33,43 @@ jobs:
       - name: Install dependencies
         run: pip install semversioner
 
+      - name: Check for pending changes
+        id: pending
+        run: |
+          if ls .semversioner/next-release/*.json > /dev/null 2>&1; then
+            echo "found=true"  >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Release
+        if: steps.pending.outputs.found == 'true'
         run: semversioner release
 
       - name: Generate changelog
+        if: steps.pending.outputs.found == 'true'
         run: semversioner changelog > CHANGELOG.md
 
       - name: Read version
+        if: steps.pending.outputs.found == 'true'
         id: version
+        run: echo "version=$(semversioner current-version)" >> "$GITHUB_OUTPUT"
+
+      - name: Generate release notes
+        if: steps.pending.outputs.found == 'true'
         run: |
-          VERSION=$(semversioner current-version)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          semversioner changelog \
+            --version "${{ steps.version.outputs.version }}" \
+            --template .github/release-notes.j2 \
+            > "${{ runner.temp }}/release-notes.md"
 
       - name: Update pyproject.toml version
+        if: steps.pending.outputs.found == 'true'
         run: |
           sed -i "s/^version = .*/version = \"${{ steps.version.outputs.version }}\"/" pyproject.toml
 
       - name: Commit & tag
+        if: steps.pending.outputs.found == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -50,8 +79,9 @@ jobs:
           git push --follow-tags
 
       - name: Create GitHub Release
+        if: steps.pending.outputs.found == 'true'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "v${{ steps.version.outputs.version }}"
-          name:     "v${{ steps.version.outputs.version }}"
-          body_path: CHANGELOG.md
+          tag_name:  "v${{ steps.version.outputs.version }}"
+          name:      "v${{ steps.version.outputs.version }}"
+          body_path: ${{ runner.temp }}/release-notes.md
