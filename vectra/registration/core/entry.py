@@ -19,7 +19,7 @@ class Entry(ABC):
         id:             str,
         config:         Optional[Type[Config]] =    None,
         entry_point:    Optional[Callable] =        None,
-        tags:           List[str] =                 []
+        tags:           List[str] =                 None
     ):
         """# Instantiate Registration Entry.
 
@@ -34,7 +34,7 @@ class Entry(ABC):
 
         # Define properties.
         self._id_:          str =                       id
-        self._tags_:        List[str] =                 tags
+        self._tags_:        List[str] =                 tags if tags else []
         self._config_:      Optional[Type[Config]] =    config
         self._entry_point_: Optional[Callable] =        entry_point
 
