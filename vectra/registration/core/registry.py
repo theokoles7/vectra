@@ -269,6 +269,10 @@ class Registry(ABC):
         ## Returns:
             * bool: True, if entry is registered.
         """
+        # Ensure registry is loaded.
+        self._ensure_loaded_()
+
+        # Indicate presence of entry.
         return entry_id in self.entries
     
     def __getitem__(self,
@@ -289,6 +293,10 @@ class Registry(ABC):
     
     def __len__(self) -> int:
         """# Quantity of Registered Entries"""
+        # Ensure registry is loaded.
+        self._ensure_loaded_()
+
+        # Provide entry quantity.
         return len(self.entries)
     
     def __repr__(self) -> str:
