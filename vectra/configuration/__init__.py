@@ -9,7 +9,10 @@ __all__ =   [
 
                 # Concrete
                 "CommandConfig",
+                "ServiceConfig",
             ]
 
-from vectra.configuration.command_config    import CommandConfig
 from vectra.configuration.core              import Config
+
+from vectra.configuration.command_config    import CommandConfig
+from vectra.configuration.service_config    import ServiceConfig
