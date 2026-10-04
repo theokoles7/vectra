@@ -8,6 +8,7 @@ from typing                     import Optional, override
 
 from vectra.configuration       import Config
 from vectra.registration.core   import Entry, Registry
+from vectra.services            import Service
 
 # CONCRETE DOUBLES =================================================================================
 
@@ -87,3 +88,29 @@ class ConcreteRegistry(Registry):
     def _load_all_(self) -> None:
         # Skip real module importing in tests and simply flip flag.
         self._loaded_:  bool =  True
+
+
+class ConcreteService(Service):
+    """# Minimal Concrete Service for Testing Abstract Base Behavior."""
+
+    def __init__(self,
+        id: str =   "test"
+    ):
+        # Initialize service.
+        super(ConcreteService, self).__init__(id = id)
+
+
+class ClosableService(ConcreteService):
+    """# Service Double that Records Calls to close()."""
+
+    def __init__(self):
+        # Initialize service.
+        super(ClosableService, self).__init__(id = "closable")
+
+        # Track closures.
+        self.close_calls:   int =   0
+
+    @override
+    def close(self) -> None:
+        # Record closure.
+        self.close_calls += 1
