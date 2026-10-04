@@ -3,11 +3,13 @@
 Tests for vendor-neutral market data types.
 """
 
-from datetime           import time, timedelta
+from datetime                       import time, timedelta
 
-from pytest             import mark
+from pytest                         import mark
 
-from vectra.data.types  import Adjustment, Session, Timespan
+from vectra.data.types.adjustment   import Adjustment
+from vectra.data.types.session      import Session
+from vectra.data.types.timespan     import Timespan
 
 # TIMESPAN =========================================================================================
 

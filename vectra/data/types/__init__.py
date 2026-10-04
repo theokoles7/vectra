@@ -1,6 +1,6 @@
 """# vectra.data.types
 
-Data type structure implementations.
+Market data structure types module.
 """
 
 __all__ =   [
