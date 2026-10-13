@@ -1,4 +1,4 @@
-"""# vectra.data.exceptions.ohlcv_validation
+"""# vectra.data.exceptions.ohlcv
 
 OHLCV validation error implementation.
 """
