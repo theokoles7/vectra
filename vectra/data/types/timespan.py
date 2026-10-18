@@ -3,11 +3,14 @@
 Duration of candles.
 """
 
-__all__ = ["Timespan"]
+__all__ =   [
+                "MINUTE_TIMESPANS",
+                "Timespan",
+            ]
 
 from datetime   import timedelta
 from enum       import Enum
-from typing     import Dict, Optional
+from typing     import Dict, FrozenSet, Optional
 
 class Timespan(Enum):
     """# Candle Duration"""
@@ -45,7 +48,14 @@ class Timespan(Enum):
         return self.delta is not None and self.delta < timedelta(days = 1)
 
 
-# DELTAS ===========================================================================================
+# CONSTANTS ========================================================================================
+
+MINUTE_TIMESPANS:   FrozenSet[Timespan] =       frozenset({
+                                                    Timespan.M1,
+                                                    Timespan.M5,
+                                                    Timespan.M15,
+                                                    Timespan.M30
+                                                })
 
 _TIMESPAN_DELTAS_:  Dict[Timespan, timedelta] = {
                                                     Timespan.M1:    timedelta(minutes = 1),
